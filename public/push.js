@@ -13,11 +13,11 @@ webPush.setVapidDetails(
 );
 var pushSubscription = {
   endpoint:
-    "https://fcm.googleapis.com/fcm/send/fT6VbqaS_cg:APA91bHyBBgsKyl4HC2yng7raX5ym-rHcF_znyUHA-IaUabg0DlJn9bgVIGZEnlzpbiS-Z_0NZ8AdZzIZVuI7Dtsmlqivuo5rs7xZd-WYm8v4XLyShGMPnQXeTrOO3TY5v9TyH5ida4T",
+    "https://fcm.googleapis.com/fcm/send/cZc-MmOZmWA:APA91bF0mG6ENQxk6nfyxh3Y8ObYhhVmeJO1LIq5cDqXSa8Z4amWnnbU2aOmC73LbKn8Vjac9NdhdsyHdJTbYkJ3cGyav_Nf10eQrtQBiYDWQ0eBEmXqCGdlUn1CjO3Gy1Lmrgb3TJoq",
   keys: {
     p256dh:
-      "BMc7EojobTLfsAxwsby2FyfrZzkzlDHkGJDcLGDwiemVgdK1/EgaTTG80Hiez+Y0RlVCBbHWGwfMmSGZyj6Avg8=",
-    auth: "Cv0HFrTrVrVtC+0dgoCoAQ==",
+      "BPMO7ojxCclVEnCbtcbE2VArf3g9zfsL4egdzKOtqccYfRtO69DA7Mk42VK7WGsOJIABb6khhX4XxgthXb66of4=",
+    auth: "b/P47uAEoVtAnc5M79aDyw==",
   },
 };
 var payload = "Selamat! Aplikasi Anda sudah dapat menerima push notifikasi!";
