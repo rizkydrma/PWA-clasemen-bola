@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClasemenBola!</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/materialize.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <!-- Navigasi -->
+    <nav class="transparent" role="navigation">
+      <div class="nav-wrapper container">
+        <a href="/" class="brand-logo" id="logo-container">
+          <img src="../img/clasemenbola-logo.png"
+        /></a>
+
+        <ul class="topnav right hide-on-med-and-down">
+          <li><a href="/#daftar-liga" class="waves-effect">Daftar Liga</a></li>
+        </ul>
+        <a
+          href="/#daftar-liga"
+          class="sidenav-trigger"
+          data-target="nav-mobile"
+        >
+          <i class="material-icons">arrow_back</i>
+        </a>
+
+        <ul class="topnav right hide-on-med-and-down"></ul>
+        <ul class="sidenav" id="nav-mobile"></ul>
+      </div>
+    </nav>
+    <!-- AKhir Navigasi -->
+
+    <div id="body-content">
+      <div class="container" id="standing">
+        <div class="st-title"></div>
+        <table class="striped responsive-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Team</th>
+              <th>M</th>
+              <th>M</th>
+              <th>S</th>
+              <th>K</th>
+              <th>GM</th>
+              <th>GA</th>
+              <th>SG</th>
+              <th>Poin</th>
+            </tr>
+          </thead>
+
+          <tbody id="standing-table"></tbody>
+        </table>
+      </div>
+      <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red" id="save">
+          <i class="large material-icons">save</i>
+        </a>
+      </div>
+    </div>
+
+    <script src="../js/materialize.min.js"></script>
+    <script src="../js/idb.js"></script>
+    <script src="../js/db.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.style.overflow = "visible";
+        const nav = document.querySelector("nav");
+        nav.classList.remove("transparent");
+        nav.classList.add("main-color");
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const isFromSaved = urlParams.get("saved");
+        const btnSave = document.getElementById("save");
+
+        if (isFromSaved) {
+          btnSave.style.display = "none";
+          getSavedClasemenByID();
+        } else {
+          // menggunakan var karena scope rule di js
+          var item = getClasemenByID();
+
+          item.then((data) => {
+            checkSaved(data.competition.id).then((clasemenSaved) => {
+              if (clasemenSaved) {
+                btnSave.classList.add("disabled");
+              }
+            });
+          });
+        }
+        btnSave.onclick = function () {
+          item.then(function (clasemen) {
+            clasemen.ID = clasemen.competition.id;
+            saveForLater(clasemen);
+            M.toast({
+              html: "Berhasil disimpan",
+              classes: "rounded",
+              inDuration: 300,
+              outDuration: 2000,
+            });
+            location.reload();
+          });
+        };
+      });
+    </script>
+  </body>
+</html>

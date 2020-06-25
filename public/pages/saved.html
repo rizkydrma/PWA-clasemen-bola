@@ -1,0 +1,40 @@
+<div class="daftar-liga">
+  <div class="title" style="width: 100%; text-align: center;">
+    <h3>DAFTAR LIGA TOP DUNIA</h3>
+  </div>
+
+  <div class="container">
+    <div class="row" id="list-league"></div>
+  </div>
+</div>
+
+<div class="slide-content">
+  <div class="slide-1">
+    <span class="index-slide">01</span>
+    <div class="slider"></div>
+  </div>
+  <div class="slide-2">
+    <div class="slider slider-active"></div>
+    <span class="index-slide">02</span>
+  </div>
+</div>
+
+<script>
+  document.body.style.overflow = "visible";
+  const nav = document.querySelector("nav");
+  const indexSlide = document.querySelectorAll(".index-slide");
+  indexSlide.forEach((item) => {
+    item.classList.add("text-main");
+  });
+  nav.classList.remove("transparent");
+  nav.classList.add("main-color");
+  setTimeout(() => {
+    document.querySelectorAll(".delete").forEach((btn) => {
+      let id = btn.dataset.id;
+      btn.addEventListener("click", () => {
+        deleteSaved(id);
+        getSavedClasemenLeagues();
+      });
+    });
+  }, 3000);
+</script>
